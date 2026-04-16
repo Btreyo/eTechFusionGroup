@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>eTech Fusion Group — Technology · Security · Sustainability · Design</title>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --navy:       #1A2E45;
+  --navy-mid:   #253E5A;
+  --navy-light: #344E6E;
+  --navy-pale:  #E8EDF3;
+  --navy-xpale: #F2F5F8;
+  --cream:      #F5F0E8;
+  --cream-dark: #E8E0D0;
+  --cream-deep: #D4C9B8;
+  --cream-text: #6B5D4F;
+  --cream-muted:#5C5042;
+  --green-dark: #1A3830;
+  --green-mid:  #2A5748;
+  --text-primary:   #1C1C1C;
+  --text-secondary: #4A4A4A;
+  --text-muted:     #7A7A7A;
+  --bg:     #FAFAF9;
+  --bg-alt: #F2EFE9;
+  --bg-surf:#F7F5F2;
+  --border: rgba(26,46,69,0.11);
+  --border-strong: rgba(26,46,69,0.2);
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+}
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; color: var(--text-primary); background: var(--bg); line-height: 1.6; }
+a { color: inherit; text-decoration: none; }
+.site { max-width: 1080px; margin: 0 auto; padding: 0 1.5rem; }
+.page { display: none; }
+.page.active { display: block; }
+
+/* ── NAV ── */
+nav { background: var(--navy); padding: 0.85rem 0; position: sticky; top: 0; z-index: 100; }
+.nav-inner { display: flex; align-items: center; justify-content: space-between; max-width: 1080px; margin: 0 auto; padding: 0 1.5rem; gap: 1rem; }
+.logo { display: flex; align-items: center; gap: 10px; cursor: pointer; }
+.logo-mark { width: 34px; height: 34px; border-radius: 7px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.16); display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 600; color: #fff; flex-shrink: 0; }
+.logo-text { font-size: 14px; font-weight: 600; color: #fff; }
+.logo-sub { font-size: 10px; color: rgba(255,255,255,0.45); margin-top: 1px; }
+.nav-links { display: flex; gap: 1.5rem; list-style: none; align-items: center; }
+.nav-links a, .nav-links button { font-size: 12.5px; color: rgba(255,255,255,0.6); text-decoration: none; background: none; border: none; cursor: pointer; font-family: inherit; padding: 0; white-space: nowrap; transition: color 0.15s; }
+.nav-links a:hover, .nav-links button:hover { color: #fff; }
+.nav-cta { background: rgba(255,255,255,0.12) !important; color: #fff !important; padding: 6px 14px !important; border-radius: var(--radius-md) !important; border: 1px solid rgba(255,255,255,0.2) !important; font-weight: 500 !important; }
+
+/* ── BUTTONS ── */
+.btn-primary { background: var(--navy); color: #fff; padding: 11px 24px; border-radius: var(--radius-md); font-size: 13.5px; font-weight: 500; border: none; cursor: pointer; display: inline-block; }
+.btn-outline { background: transparent; color: var(--text-secondary); padding: 11px 24px; border-radius: var(--radius-md); font-size: 13.5px; border: 1px solid var(--border-strong); cursor: pointer; display: inline-block; }
+.btn-ghost-light { background: rgba(255,255,255,0.09); color: rgba(255,255,255,0.8); padding: 10px 20px; border-radius: var(--radius-md); font-size: 13px; font-weight: 500; border: 1px solid rgba(255,255,255,0.18); display: inline-block; white-space: nowrap; }
+.btn-light { background: rgba(255,255,255,0.92); color: var(--navy); padding: 10px 20px; border-radius: var(--radius-md); font-size: 13px; font-weight: 600; display: inline-block; white-space: nowrap; }
+
+/* ── HERO ── */
+.hero { padding: 5rem 0 4rem; background: var(--navy); }
+.hero-eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.38); margin-bottom: 1.25rem; }
+.hero h1 { font-size: 42px; font-weight: 700; line-height: 1.14; color: #fff; max-width: 680px; margin-bottom: 1.25rem; letter-spacing: -0.5px; }
+.hero h1 em { font-style: normal; color: rgba(255,255,255,0.48); }
+.hero p { font-size: 15.5px; color: rgba(255,255,255,0.55); line-height: 1.75; max-width: 560px; margin-bottom: 2rem; }
+.hero-actions { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 3.5rem; }
+.hero-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.07); border-radius: var(--radius-lg); overflow: hidden; max-width: 700px; }
+.hero-stat { padding: 1.1rem 1.25rem; background: rgba(255,255,255,0.03); }
+.hero-stat-num { font-size: 19px; font-weight: 700; color: rgba(255,255,255,0.9); line-height: 1.2; }
+.hero-stat-label { font-size: 10.5px; color: rgba(255,255,255,0.4); margin-top: 3px; line-height: 1.4; }
+
+/* ── SECTIONS ── */
+section { padding: 4.5rem 0; }
+.section-eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 0.1em; color: var(--navy); opacity: 0.45; text-transform: uppercase; margin-bottom: 0.6rem; }
+.section-title { font-size: 27px; font-weight: 700; color: var(--text-primary); margin-bottom: 0.75rem; line-height: 1.22; letter-spacing: -0.2px; }
+.section-intro { font-size: 14.5px; color: var(--text-secondary); line-height: 1.75; max-width: 600px; margin-bottom: 2.5rem; }
+.alt-bg { background: var(--bg-alt); }
+
+/* ── SERVICES ── */
+.services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 12px; }
+.svc-card { background: #fff; border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 1.5rem 1.6rem; }
+.svc-num { font-size: 10px; font-weight: 700; letter-spacing: 0.09em; color: var(--navy); opacity: 0.3; text-transform: uppercase; margin-bottom: 0.75rem; }
+.svc-card h3 { font-size: 14.5px; font-weight: 600; margin-bottom: 0.5rem; color: var(--text-primary); }
+.svc-card > p { font-size: 13px; color: var(--text-secondary); line-height: 1.7; margin-bottom: 0.85rem; }
+.svc-tags { display: flex; flex-wrap: wrap; gap: 4px; }
+.svc-tag { font-size: 10.5px; padding: 2px 8px; border-radius: 4px; background: var(--navy-xpale); color: var(--navy-light); border: 1px solid var(--navy-pale); font-weight: 500; }
+.pqc-sub { margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--border); }
+.pqc-sub-label { font-size: 10px; font-weight: 700; letter-spacing: 0.09em; text-transform: uppercase; color: var(--navy); opacity: 0.4; margin-bottom: 0.4rem; }
+.pqc-sub > p { font-size: 12.5px; color: var(--text-muted); line-height: 1.65; margin-bottom: 0.6rem; }
+
+/* ── WEF SECTION (main site) ── */
+.wef-section { background: var(--navy); padding: 4.5rem 0; }
+.wef-inner { max-width: 1080px; margin: 0 auto; padding: 0 1.5rem; }
+.wef-eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.32); margin-bottom: 0.6rem; }
+.wef-section h2 { font-size: 27px; font-weight: 700; color: #fff; margin-bottom: 0.85rem; line-height: 1.2; letter-spacing: -0.2px; }
+.wef-intro { font-size: 14.5px; color: rgba(255,255,255,0.5); line-height: 1.75; max-width: 560px; margin-bottom: 2.5rem; }
+.wef-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 10px; margin-bottom: 2rem; }
+.wef-card { background: rgba(255,255,255,0.045); border: 1px solid rgba(255,255,255,0.09); border-radius: var(--radius-lg); padding: 1.2rem 1.4rem; }
+.wef-card h4 { font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.8); margin-bottom: 0.4rem; }
+.wef-card p { font-size: 12.5px; color: rgba(255,255,255,0.42); line-height: 1.65; }
+.wef-divider { border: none; border-top: 1px solid rgba(255,255,255,0.09); margin: 2rem 0; }
+.wef-cta-row { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+.wef-cta-row p { font-size: 14px; color: rgba(255,255,255,0.45); flex: 1; min-width: 200px; line-height: 1.65; }
+/* Standout WEF27 programme button */
+.btn-wef {
+  background: var(--cream);
+  color: var(--navy);
+  padding: 11px 22px;
+  border-radius: var(--radius-md);
+  font-size: 13px;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  white-space: nowrap;
+  letter-spacing: 0.01em;
+  cursor: pointer;
+  border: none;
+  font-family: inherit;
+  transition: opacity 0.15s;
+}
+.btn-wef:hover { opacity: 0.9; }
+.btn-wef-arrow { font-size: 15px; }
+
+/* ── TRAINING ── */
+.training-section { background: var(--bg-alt); padding: 4.5rem 0; }
+.training-inner { max-width: 1080px; margin: 0 auto; padding: 0 1.5rem; }
+.partner-note { display: inline-flex; align-items: center; gap: 6px; background: #fff; border: 1px solid var(--border); border-radius: 20px; padding: 4px 14px; font-size: 11px; color: var(--text-muted); margin-bottom: 1.5rem; }
+.partner-note strong { color: var(--navy); font-weight: 600; }
+.training-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 12px; margin-bottom: 2rem; }
+.training-card { background: #fff; border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 1.4rem 1.5rem; }
+.training-card-num { font-size: 10px; font-weight: 700; letter-spacing: 0.09em; text-transform: uppercase; color: var(--navy); opacity: 0.3; margin-bottom: 0.7rem; }
+.training-card h3 { font-size: 14px; font-weight: 600; color: var(--navy); margin-bottom: 0.5rem; }
+.training-card p { font-size: 12.5px; color: var(--text-secondary); line-height: 1.7; margin-bottom: 0.75rem; }
+.training-tag { display: inline-block; font-size: 10.5px; padding: 2px 8px; border-radius: 4px; background: var(--navy-xpale); color: var(--navy-light); border: 1px solid var(--navy-pale); font-weight: 500; margin: 2px 2px 2px 0; }
+.training-cta { background: var(--navy); border-radius: var(--radius-xl); padding: 1.75rem 2rem; display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; flex-wrap: wrap; }
+.training-cta h3 { font-size: 16px; font-weight: 600; color: #fff; margin-bottom: 3px; }
+.training-cta p { font-size: 13px; color: rgba(255,255,255,0.45); }
+
+/* ── GREEN ── */
+.green-section { background: var(--green-dark); padding: 4.5rem 0; }
+.green-inner { max-width: 1080px; margin: 0 auto; padding: 0 1.5rem; }
+.green-eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.3); margin-bottom: 0.6rem; }
+.green-section h2 { font-size: 27px; font-weight: 700; color: rgba(255,255,255,0.88); margin-bottom: 0.85rem; letter-spacing: -0.2px; }
+.green-intro { font-size: 14.5px; color: rgba(255,255,255,0.46); line-height: 1.75; max-width: 560px; margin-bottom: 2.5rem; }
+.green-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 2rem; }
+.green-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.09); border-radius: var(--radius-lg); padding: 1.6rem 1.75rem; }
+.green-card-partner { font-size: 10px; font-weight: 700; letter-spacing: 0.09em; text-transform: uppercase; color: rgba(255,255,255,0.32); margin-bottom: 0.5rem; }
+.green-card h3 { font-size: 15px; font-weight: 600; color: rgba(255,255,255,0.82); margin-bottom: 0.65rem; line-height: 1.3; }
+.green-card p { font-size: 12.5px; color: rgba(255,255,255,0.45); line-height: 1.7; margin-bottom: 0.85rem; }
+.green-tag { display: inline-block; font-size: 10.5px; padding: 2px 8px; border-radius: 4px; background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.45); border: 1px solid rgba(255,255,255,0.1); margin: 2px 2px 2px 0; font-weight: 500; }
+.green-metrics { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 2rem; }
+.green-metric { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: var(--radius-md); padding: 1rem 1.1rem; text-align: center; }
+.green-metric-num { font-size: 21px; font-weight: 700; color: rgba(255,255,255,0.72); }
+.green-metric-label { font-size: 11px; color: rgba(255,255,255,0.35); margin-top: 4px; line-height: 1.45; }
+.green-divider { border: none; border-top: 1px solid rgba(255,255,255,0.09); margin: 2rem 0; }
+.green-cta { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.green-cta p { font-size: 14px; color: rgba(255,255,255,0.44); flex: 1; min-width: 200px; line-height: 1.65; }
+
+/* ── BRANDS ── */
+.brands-strip { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 1.5rem; }
+.brand-pill { background: #fff; border: 1px solid var(--border); border-radius: 5px; padding: 5px 14px; font-size: 12px; font-weight: 500; color: var(--text-secondary); }
+
+/* ── CONTACT ── */
+.contact-wrap { max-width: 580px; }
+.contact-card { background: #fff; border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 1.75rem; }
+.contact-card h3 { font-size: 16px; font-weight: 600; margin-bottom: 1.25rem; }
+.field { margin-bottom: 0.9rem; }
+.field label { display: block; font-size: 11.5px; color: var(--text-muted); margin-bottom: 4px; font-weight: 500; }
+.field input, .field textarea, .field select { width: 100%; background: var(--bg-surf); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 9px 12px; font-size: 13.5px; color: var(--text-primary); font-family: inherit; outline: none; }
+.field input:focus, .field textarea:focus, .field select:focus { border-color: var(--navy-light); }
+.field textarea { height: 80px; resize: none; }
+.submit-btn { width: 100%; background: var(--navy); color: #fff; border: none; border-radius: var(--radius-md); padding: 11px; font-size: 13.5px; font-weight: 500; cursor: pointer; margin-top: 0.5rem; font-family: inherit; }
+
+/* ── FOOTER ── */
+footer { background: var(--navy); padding: 3rem 0 1.75rem; }
+.footer-inner { max-width: 1080px; margin: 0 auto; padding: 0 1.5rem; }
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 2rem; margin-bottom: 2.5rem; }
+.footer-brand-name { font-size: 14px; font-weight: 600; color: rgba(255,255,255,0.82); margin-bottom: 0.5rem; }
+.footer-brand-desc { font-size: 12.5px; color: rgba(255,255,255,0.35); line-height: 1.75; max-width: 240px; }
+.footer-col h4 { font-size: 10.5px; font-weight: 700; color: rgba(255,255,255,0.45); margin-bottom: 0.85rem; text-transform: uppercase; letter-spacing: 0.07em; }
+.footer-col ul { list-style: none; }
+.footer-col li { font-size: 12.5px; color: rgba(255,255,255,0.35); margin-bottom: 6px; }
+.footer-col li a { color: rgba(255,255,255,0.35); transition: color 0.15s; }
+.footer-col li a:hover { color: rgba(255,255,255,0.65); }
+.footer-bottom { border-top: 1px solid rgba(255,255,255,0.08); padding-top: 1.25rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; }
+.footer-copy { font-size: 11px; color: rgba(255,255,255,0.28); }
+
+/* ── ABOUT PAGE ── */
+.about-hero { background: var(--navy); padding: 4rem 0 3.5rem; }
+.about-hero h1 { font-size: 32px; font-weight: 700; color: #fff; margin-bottom: 0.5rem; letter-spacing: -0.25px; }
+.about-hero p { font-size: 14px; color: rgba(255,255,255,0.45); line-height: 1.7; max-width: 520px; }
+.about-back { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; color: rgba(255,255,255,0.38); margin-bottom: 1.5rem; cursor: pointer; background: none; border: none; font-family: inherit; }
+.about-back:hover { color: rgba(255,255,255,0.7); }
+.about-body { padding: 3.5rem 0; }
+.about-layout { display: grid; grid-template-columns: 250px 1fr; gap: 3rem; align-items: start; }
+.profile-card { background: #fff; border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 1.75rem; position: sticky; top: 5rem; }
+.profile-avatar { width: 60px; height: 60px; border-radius: 50%; background: var(--navy-pale); display: flex; align-items: center; justify-content: center; font-size: 18px; font-weight: 700; color: var(--navy); margin-bottom: 1rem; border: 1px solid var(--border); }
+.profile-name { font-size: 15px; font-weight: 600; margin-bottom: 3px; }
+.profile-title { font-size: 11.5px; color: var(--text-muted); margin-bottom: 1.2rem; line-height: 1.55; }
+.profile-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 1.2rem; }
+.ptag { font-size: 10.5px; padding: 2px 9px; border-radius: 4px; background: var(--navy-xpale); color: var(--navy-light); border: 1px solid var(--navy-pale); font-weight: 500; }
+.ptag-green { background: #EAF2EF; color: var(--green-mid); border-color: #C4DDD8; }
+.social-links { display: flex; flex-direction: column; gap: 8px; }
+.social-link { display: flex; align-items: center; gap: 8px; font-size: 12.5px; color: var(--navy-light); }
+.social-link:hover { color: var(--navy); }
+.social-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--navy-light); opacity: 0.5; flex-shrink: 0; }
+.about-content h2 { font-size: 21px; font-weight: 700; margin-bottom: 0.85rem; letter-spacing: -0.15px; }
+.about-content p { font-size: 14px; color: var(--text-secondary); line-height: 1.8; margin-bottom: 1rem; }
+.about-content h3 { font-size: 14px; font-weight: 700; margin: 2rem 0 0.75rem; color: var(--navy); text-transform: uppercase; letter-spacing: 0.05em; opacity: 0.6; }
+.exp-list { display: flex; flex-direction: column; gap: 8px; }
+.exp-item { display: flex; align-items: flex-start; gap: 9px; font-size: 13.5px; color: var(--text-secondary); line-height: 1.55; }
+.exp-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--navy); opacity: 0.35; flex-shrink: 0; margin-top: 7px; }
+
+/* ══════════════════════════════════════════
+   WEF27 PROGRAMME PAGE — Navy/Cream palette
+   (self-contained inside page-wef div)
+══════════════════════════════════════════ */
+#page-wef {
+  --w-navy:      #1A2E45;
+  --w-navy-mid:  #253E5A;
+  --w-navy-l:    #344E6E;
+  --w-cream:     #F5F0E8;
+  --w-cream-d:   #E8E0D0;
+  --w-cream-dp:  #D4C9B8;
+  --w-accent:    #C9A87A;
+  --w-accent-l:  #E8D5A0;
+  --w-accent-d:  #8B6B2A;
+  --w-muted:     rgba(245,240,232,0.45);
+  --w-faint:     rgba(245,240,232,0.25);
+  --w-border:    rgba(201,168,122,0.2);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+  background: var(--w-navy);
+  color: var(--w-cream);
+  min-height: 100vh;
+}
+
+.w-back-bar {
+  background: var(--w-navy-mid);
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+  padding: 0.75rem 2.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.w-back-btn {
+  background: none;
+  border: none;
+  color: rgba(245,240,232,0.5);
+  font-size: 12px;
+  cursor: pointer;
+  font-family: inherit;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0;
+  transition: color 0.15s;
+}
+.w-back-btn:hover { color: var(--w-cream); }
+.w-back-sep { color: rgba(255,255,255,0.15); font-size: 12px; }
+.w-back-title { font-size: 12px; color: rgba(245,240,232,0.35); }
+
+/* WEF hero */
+.w-hero {
+  min-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 0 3rem 5rem;
+  position: relative;
+  overflow: hidden;
+}
+.w-hero-bg {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 60% 50% at 70% 40%, rgba(201,168,122,0.06) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 60% at 20% 70%, rgba(201,168,122,0.03) 0%, transparent 60%),
+    linear-gradient(160deg, #1A2E45 0%, #1E3550 50%, #162438 100%);
+}
+.w-hero-lines {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(245,240,232,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(245,240,232,0.025) 1px, transparent 1px);
+  background-size: 80px 80px;
+  mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 0%, transparent 70%);
+}
+.w-hero-content { position: relative; z-index: 2; max-width: 860px; }
+.w-hero-eyebrow {
+  font-size: 11px; font-weight: 600; letter-spacing: 0.25em; text-transform: uppercase;
+  color: var(--w-accent); margin-bottom: 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+}
+.w-hero-eyebrow::before { content: ''; display: block; width: 40px; height: 0.5px; background: var(--w-accent); }
+.w-hero-title {
+  font-size: clamp(44px, 7vw, 84px);
+  font-weight: 300;
+  line-height: 0.97;
+  letter-spacing: -0.01em;
+  color: var(--w-cream);
+  margin-bottom: 2rem;
+}
+.w-hero-title em { font-style: italic; color: var(--w-accent-l); font-weight: 300; }
+.w-hero-sub { font-size: clamp(15px, 1.8vw, 19px); font-weight: 300; font-style: italic; color: var(--w-faint); max-width: 500px; line-height: 1.65; margin-bottom: 2.5rem; }
+.w-hero-meta { display: flex; gap: 2.5rem; flex-wrap: wrap; }
+.w-meta-item { display: flex; flex-direction: column; gap: 4px; }
+.w-meta-label { font-size: 10px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--w-accent-d); }
+.w-meta-value { font-size: 13px; color: var(--w-faint); }
+
+/* WEF sections */
+.w-section { padding: 5rem 3rem; max-width: 1080px; margin: 0 auto; border-top: 0.5px solid var(--w-border); }
+.w-section-header { display: flex; align-items: flex-start; gap: 3rem; margin-bottom: 3.5rem; }
+.w-section-num { font-size: 64px; font-weight: 300; color: rgba(201,168,122,0.1); line-height: 1; min-width: 56px; margin-top: -8px; font-style: italic; }
+.w-section-tag { font-size: 10px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--w-accent); margin-bottom: 0.6rem; }
+.w-section-title { font-size: clamp(24px, 3.5vw, 36px); font-weight: 300; color: var(--w-cream); line-height: 1.2; }
+.w-section-title em { font-style: italic; color: var(--w-accent-l); }
+
+/* Intro */
+.w-intro-body { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+.w-intro-lead { font-size: clamp(16px, 2vw, 22px); font-weight: 300; line-height: 1.6; color: var(--w-cream); }
+.w-intro-copy p { font-size: 14.5px; line-height: 1.85; color: var(--w-muted); margin-bottom: 1.2rem; }
+.w-intro-copy p:last-child { margin-bottom: 0; }
+.w-pull-quote { grid-column: 1/-1; border-left: 2px solid var(--w-accent); padding: 1.4rem 2rem; margin-top: 0.5rem; background: rgba(201,168,122,0.04); }
+.w-pull-quote p { font-size: clamp(15px, 1.8vw, 20px); font-style: italic; font-weight: 300; color: var(--w-accent-l); line-height: 1.6; }
+
+/* Inclusions */
+.w-inc-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(201,168,122,0.08); border: 0.5px solid rgba(201,168,122,0.08); }
+.w-inc-card { background: var(--w-navy); padding: 2rem 1.75rem; transition: background 0.2s; position: relative; }
+.w-inc-card:hover { background: rgba(201,168,122,0.04); }
+.w-inc-card.excluded { opacity: 0.4; }
+.w-inc-icon { width: 34px; height: 34px; border: 0.5px solid var(--w-border); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 1.1rem; }
+.w-inc-icon svg { width: 14px; height: 14px; stroke: var(--w-accent); fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+.w-inc-card.excluded .w-inc-icon svg { stroke: var(--w-faint); }
+.w-inc-title { font-size: 13.5px; font-weight: 500; color: var(--w-cream); margin-bottom: 0.5rem; }
+.w-inc-desc { font-size: 12.5px; line-height: 1.7; color: var(--w-muted); }
+.w-exc-badge { display: inline-block; font-size: 9px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; padding: 2px 8px; border: 0.5px solid rgba(245,240,232,0.2); border-radius: 2px; color: var(--w-faint); margin-bottom: 0.75rem; }
+
+/* Tiers */
+.w-tiers-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+.w-tier { border: 0.5px solid rgba(201,168,122,0.15); padding: 2.5rem 2rem; position: relative; transition: border-color 0.2s; }
+.w-tier:hover { border-color: rgba(201,168,122,0.35); }
+.w-tier.featured { border-color: var(--w-accent); background: rgba(201,168,122,0.04); }
+.w-featured-badge { position: absolute; top: -1px; left: 50%; transform: translateX(-50%); font-size: 9px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; padding: 3px 12px; background: var(--w-accent); color: var(--w-navy); }
+.w-tier-name { font-size: 10px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--w-accent-d); margin-bottom: 0.6rem; }
+.w-tier-price { font-size: 20px; font-weight: 300; font-style: italic; color: var(--w-cream); margin-bottom: 1.1rem; padding-bottom: 1.1rem; border-bottom: 0.5px solid var(--w-border); }
+.w-tier-desc { font-size: 13px; line-height: 1.7; color: var(--w-muted); margin-bottom: 1.5rem; }
+.w-tier-features { list-style: none; display: flex; flex-direction: column; gap: 0.55rem; margin-bottom: 2rem; }
+.w-tier-features li { font-size: 12px; color: var(--w-muted); padding-left: 1.2rem; position: relative; line-height: 1.5; }
+.w-tier-features li::before { content: ''; position: absolute; left: 0; top: 7px; width: 5px; height: 0.5px; background: var(--w-accent-d); }
+.w-tier-btn { display: block; text-align: center; font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; padding: 11px 0; border: 0.5px solid rgba(201,168,122,0.3); color: var(--w-accent); text-decoration: none; transition: background 0.2s; cursor: pointer; }
+.w-tier-btn:hover, .w-tier.featured .w-tier-btn { background: var(--w-accent); color: var(--w-navy); }
+
+/* Steps */
+.w-steps { display: flex; flex-direction: column; gap: 0; }
+.w-step { display: grid; grid-template-columns: 72px 1fr; gap: 2rem; padding: 2.25rem 0; border-bottom: 0.5px solid rgba(201,168,122,0.08); align-items: start; opacity: 0; transform: translateX(-16px); transition: opacity 0.55s ease, transform 0.55s ease; }
+.w-step.visible { opacity: 1; transform: translateX(0); }
+.w-step-num { font-size: 42px; font-weight: 300; font-style: italic; color: rgba(201,168,122,0.18); line-height: 1; }
+.w-step-title { font-size: 14.5px; font-weight: 500; color: var(--w-cream); margin-bottom: 0.4rem; }
+.w-step-desc { font-size: 13.5px; line-height: 1.75; color: var(--w-muted); }
+
+/* WEF CTA */
+.w-cta-section { padding: 6rem 3rem; text-align: center; border-top: 0.5px solid var(--w-border); }
+.w-cta-inner { max-width: 580px; margin: 0 auto; }
+.w-cta-title { font-size: clamp(30px, 4.5vw, 50px); font-weight: 300; line-height: 1.1; color: var(--w-cream); margin-bottom: 1.25rem; }
+.w-cta-title em { font-style: italic; color: var(--w-accent-l); }
+.w-cta-body { font-size: 14.5px; line-height: 1.8; color: var(--w-muted); margin-bottom: 2.25rem; }
+.w-cta-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+.w-btn-p { font-size: 12px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; padding: 13px 32px; background: var(--w-accent); color: var(--w-navy); text-decoration: none; transition: opacity 0.2s; }
+.w-btn-p:hover { opacity: 0.85; }
+.w-btn-s { font-size: 12px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; padding: 13px 32px; border: 0.5px solid rgba(201,168,122,0.35); color: var(--w-accent); text-decoration: none; transition: background 0.2s; }
+.w-btn-s:hover { background: rgba(201,168,122,0.08); }
+.w-cta-note { margin-top: 1.5rem; font-size: 11.5px; color: var(--w-faint); }
+
+/* WEF footer */
+.w-footer { border-top: 0.5px solid rgba(201,168,122,0.1); padding: 1.75rem 3rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+.w-footer-logo { font-size: 13px; color: var(--w-accent-d); letter-spacing: 0.1em; }
+.w-footer p { font-size: 11px; color: var(--w-faint); letter-spacing: 0.05em; }
+
+/* RESPONSIVE */
+@media (max-width: 780px) {
+  .hero h1 { font-size: 28px; }
+  .hero-stats { grid-template-columns: 1fr 1fr; }
+  .services-grid { grid-template-columns: 1fr; }
+  .green-grid { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+  .about-layout { grid-template-columns: 1fr; }
+  .profile-card { position: static; }
+  .nav-links li { display: none; }
+  .nav-links li:last-child, .nav-links li:first-child { display: list-item; }
+  .w-hero { padding: 0 1.5rem 4rem; }
+  .w-section { padding: 4rem 1.5rem; }
+  .w-intro-body { grid-template-columns: 1fr; gap: 2rem; }
+  .w-inc-grid { grid-template-columns: 1fr; }
+  .w-tiers-grid { grid-template-columns: 1fr; }
+  .w-section-header { gap: 1.5rem; }
+  .w-cta-section { padding: 4rem 1.5rem; }
+  .w-footer { padding: 1.5rem; flex-direction: column; align-items: flex-start; }
+}
+@media (max-width: 500px) {
+  .hero h1 { font-size: 24px; }
+  .green-metrics { grid-template-columns: 1fr 1fr; }
+  .footer-grid { grid-template-columns: 1fr; }
+  .training-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════ MAIN PAGE ═══════════════════ -->
+<div id="page-main" class="page active">
+
+<nav>
+  <div class="nav-inner">
+    <div class="logo" onclick="showPage('main')">
+      <div class="logo-mark">eTF</div>
+      <div>
+        <div class="logo-text">eTech Fusion Group</div>
+        <div class="logo-sub">Technology &middot; Security &middot; Sustainability &middot; Design</div>
+      </div>
+    </div>
+    <ul class="nav-links">
+      <li><a href="#services">Services</a></li>
+      <li><a href="#training">Training</a></li>
+      <li><a href="#wef">Davos</a></li>
+      <li><a href="#green">Sustainability</a></li>
+      <li><button onclick="showPage('about')">About Bobbi</button></li>
+      <li><a href="#contact" class="nav-cta">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="site">
+    <div class="hero-eyebrow">WEF Davos 27 Trade Envoy &nbsp;&middot;&nbsp; Net Zero Committed &nbsp;&middot;&nbsp; UK Based</div>
+    <h1>Securing enterprises.<br><em>Shaping</em> a sustainable future.</h1>
+    <p>eTech Fusion Group delivers strategic technology consultancy, quantum-resilient security, workforce training, brand design, and green energy investment &mdash; across Corporate, Legal, Banking, Government and Defence.</p>
+    <div class="hero-actions">
+      <a class="btn-primary" href="#services">Our services</a>
+      <a class="btn-ghost-light" href="#green">Sustainability &darr;</a>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="hero-stat-num">Two</div><div class="hero-stat-label">Decades of industry experience</div></div>
+      <div class="hero-stat"><div class="hero-stat-num">5</div><div class="hero-stat-label">Sectors: Corporate, Legal, Banking, Govt &amp; Defence</div></div>
+      <div class="hero-stat"><div class="hero-stat-num">WEF</div><div class="hero-stat-label">Davos 27 Trade Envoy</div></div>
+      <div class="hero-stat"><div class="hero-stat-num">Net 0</div><div class="hero-stat-label">Climate committed</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="site">
+    <div class="section-eyebrow">What we do</div>
+    <h2 class="section-title">Enterprise capability for a complex world</h2>
+    <p class="section-intro">From long-term strategic consultancy to quantum-resilient endpoint platforms and purposeful brand design &mdash; eTech Fusion Group is the partner for organisations that refuse to stand still.</p>
+    <div class="services-grid">
+      <div class="svc-card">
+        <div class="svc-num">01</div>
+        <h3>Technology &amp; Business Consultancy</h3>
+        <p>Over two decades of enterprise IT advisory embedded at the heart of complex organisations across Corporate, Legal, Banking, Government and Defence. We design and deliver modern workplace transformation, cloud strategy, and operating model change &mdash; cutting through complexity to create measurable outcomes. From IR35-compliant interim engagements to long-term strategic partnerships, we work the way your organisation needs.</p>
+        <div class="svc-tags"><span class="svc-tag">Cloud Strategy</span><span class="svc-tag">Modern Workplace</span><span class="svc-tag">IR35 Compliant</span><span class="svc-tag">Digital Transformation</span><span class="svc-tag">Microsoft 365</span><span class="svc-tag">Azure</span><span class="svc-tag">Operating Model</span></div>
+      </div>
+      <div class="svc-card">
+        <div class="svc-num">02</div>
+        <h3>Securing Platforms &amp; Endpoints</h3>
+        <p>Resilient, well-managed endpoint platforms are the foundation of any secure organisation. We design, deploy, and operate enterprise endpoint environments through Microsoft Intune, Autopilot, Endpoint Manager, and ConfigMgr &mdash; delivering zero trust architecture, device compliance, and secure access across hybrid and remote workforces.</p>
+        <div class="svc-tags"><span class="svc-tag">Microsoft Intune</span><span class="svc-tag">Autopilot</span><span class="svc-tag">Zero Trust</span><span class="svc-tag">MEMCM / ConfigMgr</span><span class="svc-tag">EDR / XDR</span><span class="svc-tag">Hybrid Join</span></div>
+        <div class="pqc-sub">
+          <div class="pqc-sub-label">Post-Quantum Cryptography (PQC)</div>
+          <p>Nation-state actors are already harvesting encrypted data today to decrypt when quantum computers mature &mdash; the &ldquo;harvest now, decrypt later&rdquo; threat is active now. We layer PQC readiness assessments onto your endpoint platform, aligned to NIST FIPS 203/204/205 and the NCSC&rsquo;s 2025 migration timeline, building your cryptographic inventory, identifying weak cipher suites, and delivering a phased migration roadmap.</p>
+          <div class="svc-tags"><span class="svc-tag">PQC / ML-KEM</span><span class="svc-tag">NIST 203/204/205</span><span class="svc-tag">NCSC PQC Guidance</span><span class="svc-tag">Crypto-agility</span><span class="svc-tag">Cryptographic Audit</span></div>
+        </div>
+      </div>
+      <div class="svc-card">
+        <div class="svc-num">03</div>
+        <h3>Security, Risk &amp; Compliance</h3>
+        <p>Regulatory expectations have never been higher across every sector we serve. We deliver compliance-led security programmes aligned to CIS Controls v8, NCSC Cyber Essentials Plus, GDPR, and HIPAA &mdash; helping organisations establish defensible baselines, pass audits, and build genuine board-level confidence in their security posture.</p>
+        <div class="svc-tags"><span class="svc-tag">CIS Controls v8</span><span class="svc-tag">NCSC Cyber Essentials+</span><span class="svc-tag">GDPR</span><span class="svc-tag">HIPAA</span><span class="svc-tag">SIEM</span><span class="svc-tag">Vulnerability Management</span><span class="svc-tag">Risk Assessment</span></div>
+      </div>
+      <div class="svc-card">
+        <div class="svc-num">04</div>
+        <h3>Corporate Dynamism&reg; &mdash; Business Services</h3>
+        <p>Growth does not happen by accident. Corporate Dynamism&reg; is our business acceleration practice &mdash; supporting SMEs and scale-ups with strategy, international market entry, operational improvement, and investor readiness. We bring the rigour of enterprise consulting with the agility of a boutique advisory, helping ambitious leadership teams move faster and with greater confidence.</p>
+        <div class="svc-tags"><span class="svc-tag">Growth Strategy</span><span class="svc-tag">Market Entry</span><span class="svc-tag">Investor Readiness</span><span class="svc-tag">Operational Improvement</span><span class="svc-tag">SME Advisory</span></div>
+      </div>
+      <div class="svc-card">
+        <div class="svc-num">05</div>
+        <h3>Enterprise B2B Corporate Gifting</h3>
+        <p>Elevate client relationships, reward your people, and reinforce your brand with premium, purposeful corporate gifts. Through Bobbi | London&trade; &mdash; our enterprise gifting imprint &mdash; we curate bespoke tech-led collections of compact charging solutions, travel-ready accessories, and branded gift sets designed with the modern professional in mind. Tailored for procurement teams, ESG programmes, and large-scale event gifting.</p>
+        <div class="svc-tags"><span class="svc-tag">B2B Enterprise Gifting</span><span class="svc-tag">Tech Accessories</span><span class="svc-tag">Branded Collections</span><span class="svc-tag">Bulk Procurement</span><span class="svc-tag">ESG / CSR Aligned</span><span class="svc-tag">Event Gifting</span></div>
+      </div>
+      <div class="svc-card">
+        <div class="svc-num">06</div>
+        <h3>Brand Design &amp; Identity</h3>
+        <p>Your brand is your most visible strategic asset. We create distinctive, authoritative brand identities &mdash; from complete visual identity systems and brand guidelines through to digital design, pitch decks, and product packaging. Built to communicate credibility and scale with ambition. Whether launching a new venture or repositioning an established enterprise, we craft the visual language that makes you impossible to ignore.</p>
+        <div class="svc-tags"><span class="svc-tag">Brand Strategy</span><span class="svc-tag">Visual Identity</span><span class="svc-tag">Brand Guidelines</span><span class="svc-tag">Digital Design</span><span class="svc-tag">Pitch Decks</span><span class="svc-tag">Packaging</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRAINING -->
+<div class="training-section" id="training">
+  <div class="training-inner">
+    <div class="section-eyebrow">Workforce Readiness</div>
+    <h2 class="section-title">Building the Next-Generation Workforce</h2>
+    <div class="partner-note">Delivered in partnership with <strong>We Job Box</strong></div>
+    <p class="section-intro">Tomorrow&rsquo;s workplace demands more than technical knowledge. In partnership with We Job Box, we equip the next generation with the skills, presence, and professional profile that employers actually need &mdash; from day one.</p>
+    <div class="training-grid">
+      <div class="training-card"><div class="training-card-num">01</div><h3>IT &amp; Digital Skills</h3><p>Practical, hands-on IT training grounded in real enterprise environments &mdash; covering Microsoft 365, cloud fundamentals, cybersecurity awareness, and Microsoft Copilot AI tools to build a strong digital foundation for the modern workplace.</p><span class="training-tag">Microsoft 365</span><span class="training-tag">Microsoft Copilot AI</span><span class="training-tag">Cloud Fundamentals</span><span class="training-tag">Cybersecurity Awareness</span></div>
+      <div class="training-card"><div class="training-card-num">02</div><h3>Soft Skills &amp; Professional Effectiveness</h3><p>The skills that truly differentiate people &mdash; communication, emotional intelligence, collaboration, and workplace resilience. Consistently the attributes most sought after by employers, and least often formally taught.</p><span class="training-tag">Communication</span><span class="training-tag">Emotional Intelligence</span><span class="training-tag">Teamwork</span><span class="training-tag">Resilience</span></div>
+      <div class="training-card"><div class="training-card-num">03</div><h3>Presentation Skills &amp; Executive Presence</h3><p>From pitching to a panel to presenting in the boardroom &mdash; learners develop confidence, clarity, and command, with live practice sessions and feedback from experienced practitioners.</p><span class="training-tag">Public Speaking</span><span class="training-tag">Storytelling</span><span class="training-tag">Executive Presence</span><span class="training-tag">Virtual Presenting</span></div>
+      <div class="training-card"><div class="training-card-num">04</div><h3>Profile Building &amp; Personal Brand</h3><p>In a digital-first world, your profile is your first impression. LinkedIn optimisation, personal brand narrative, CV writing, interview preparation, and networking strategy &mdash; so every graduate enters the market visible, confident, and credible.</p><span class="training-tag">LinkedIn Optimisation</span><span class="training-tag">Personal Branding</span><span class="training-tag">CV &amp; Interview Prep</span><span class="training-tag">Networking Strategy</span></div>
+    </div>
+    <div class="training-cta">
+      <div><h3>Invest in your next-generation talent</h3><p>Speak to us about cohort programmes, employer partnerships, or bespoke delivery through We Job Box.</p></div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap"><a href="#contact" class="btn-light">Get in touch</a><a href="https://www.linkedin.com/in/bobbi-trehan-young" class="btn-ghost-light" target="_blank">LinkedIn &nearr;</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- WEF DAVOS — UPDATED SECTION -->
+<div class="wef-section" id="wef">
+  <div class="wef-inner">
+    <div class="wef-eyebrow">Davos 27 &middot; World Economic Forum</div>
+    <h2>WEF Davos Trade Envoys</h2>
+    <p class="wef-intro">eTech Fusion Group is represented at Davos as a WEF 27 Trade Envoy &mdash; shaping global policy conversations on technology, trade, SME resilience, and women&rsquo;s economic leadership at the highest level of international dialogue.</p>
+    <div class="wef-grid">
+      <div class="wef-card"><h4>Trade &amp; Economic Policy</h4><p>Engaging global trade frameworks, bilateral trade policy, and economic resilience strategy with government and industry leaders at Davos.</p></div>
+      <div class="wef-card"><h4>Technology &amp; AI Governance</h4><p>Representing enterprise technology, cybersecurity, post-quantum readiness, and responsible AI at multilateral policy forums.</p></div>
+      <div class="wef-card"><h4>Women in Business &amp; STEM</h4><p>Championing gender equity in technology leadership, entrepreneurship, and investment access on a truly global stage.</p></div>
+      <div class="wef-card"><h4>SME Global Advocacy</h4><p>Ensuring the voice of small and medium enterprises is heard within global economic and trade decisions that affect them most.</p></div>
+    </div>
+    <hr class="wef-divider">
+    <div class="wef-cta-row">
+      <p>Interested in joining the Davos 27 Trade Envoy Programme &mdash; gaining access to the WEF security perimeter, the curated dinner, and sector-matched introductions with global decision-makers?</p>
+      <button class="btn-wef" onclick="showPage('wef')">
+        View the WEF27 Programme <span class="btn-wef-arrow">&rarr;</span>
+      </button>
+      <a href="https://www.linkedin.com/in/bobbi-trehan-young" class="btn-ghost-light" target="_blank">Connect on LinkedIn &nearr;</a>
+    </div>
+  </div>
+</div>
+
+<!-- GREEN -->
+<div class="green-section" id="green">
+  <div class="green-inner">
+    <div class="green-eyebrow">Sustainability &amp; Climate Action</div>
+    <h2>Decarbonisation &amp; Green Energy</h2>
+    <p class="green-intro">eTech Fusion Group is committed to a net-zero future as a core belief &mdash; not a compliance exercise. We invest in and champion both nature-based solutions and AI-powered clean energy platforms that create measurable environmental and economic value.</p>
+    <div class="green-grid">
+      <div class="green-card">
+        <div class="green-card-partner">Through Oxygenate Environmental Consultants</div>
+        <h3>Oxygenating Bamboo &mdash; Restoring Air, Restoring Life</h3>
+        <p>eTech Fusion Group champions an initiative, delivered through Oxygenate Environmental Consultants, to scale the planting and cultivation of oxygenating bamboo &mdash; one of the most effective and fastest-growing natural carbon sequesters available. Bamboo sequesters up to 12 tonnes of CO&sup2; per hectare per year while releasing 35% more oxygen than equivalent forest, improving air quality, preventing soil erosion, and supporting biodiversity.</p>
+        <p>The initiative connects corporate partners, landowners, and communities to fund, plant, and track bamboo groves &mdash; creating verified green corridors that contribute directly to national net-zero targets.</p>
+        <span class="green-tag">Carbon sequestration</span><span class="green-tag">Biodiversity</span><span class="green-tag">Air quality</span><span class="green-tag">Nature-based solutions</span><span class="green-tag">Corporate partnerships</span>
+      </div>
+      <div class="green-card">
+        <div class="green-card-partner">Portfolio investment</div>
+        <h3>Enerlink.ai &mdash; Linking Energy to Intelligence</h3>
+        <p>Bobbi Trehan-Young is an investor in Enerlink.ai, a Swiss-based clean-tech platform that uses AI and blockchain to measure, certify, and monetise emission reductions from clean energy projects worldwide. With over 20,000 projects completed, Enerlink qualifies renewable energy projects via its ISO-accredited Earth Standard &mdash; turning fragmented project data into bankable intelligence that unlocks funding at scale.</p>
+        <p>The platform generates Decarb-certified Emission Reductions (DERs) and Verra-certified VCUs. Recognised at COP30 in Bel&eacute;m, Enerlink presents at the AI for Good Global Summit Geneva 2026.</p>
+        <span class="green-tag">AI-powered verification</span><span class="green-tag">Blockchain provenance</span><span class="green-tag">DER carbon credits</span><span class="green-tag">ISO Earth Standard</span><span class="green-tag">COP30 featured</span>
+      </div>
+    </div>
+    <div class="green-metrics">
+      <div class="green-metric"><div class="green-metric-num">20,000+</div><div class="green-metric-label">Clean energy projects on Enerlink platform</div></div>
+      <div class="green-metric"><div class="green-metric-num">12t CO&sup2;</div><div class="green-metric-label">Sequestered per hectare of bamboo annually</div></div>
+      <div class="green-metric"><div class="green-metric-num">35%</div><div class="green-metric-label">More oxygen released vs equivalent forest</div></div>
+    </div>
+    <hr class="green-divider">
+    <div class="green-cta">
+      <p>Interested in the bamboo oxygenation initiative, DER certification, or clean energy investment? Let&rsquo;s build a cleaner future together.</p>
+      <a href="https://www.enerlink.ai" class="btn-ghost-light" target="_blank">Visit Enerlink.ai &nearr;</a>
+      <a href="#contact" class="btn-light">Get in touch</a>
+    </div>
+  </div>
+</div>
+
+<!-- BRANDS -->
+<section class="alt-bg">
+  <div class="site">
+    <div class="section-eyebrow">Our group</div>
+    <h2 class="section-title">Companies &amp; initiatives</h2>
+    <p class="section-intro">Complementary brands and partnerships, each delivering specialist expertise &mdash; unified by a commitment to excellence, security, and sustainability.</p>
+    <div class="brands-strip">
+      <div class="brand-pill">eTech Fusion Group&reg;</div>
+      <div class="brand-pill">Corporate Dynamism&reg;</div>
+      <div class="brand-pill">Bobbi | London&trade;</div>
+      <div class="brand-pill">eTech Consultancy</div>
+      <div class="brand-pill">We Job Box &mdash; Training Partner</div>
+      <div class="brand-pill">Oxygenate Environmental Consultants</div>
+      <div class="brand-pill">Enerlink.ai &mdash; investor</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="site">
+    <div class="section-eyebrow">Get in touch</div>
+    <h2 class="section-title">Start a conversation</h2>
+    <p class="section-intro">Whether it&rsquo;s a security engagement, trade partnership, workforce training programme, brand project, or green energy initiative &mdash; we&rsquo;d love to hear from you.</p>
+    <div class="contact-wrap">
+      <div class="contact-card">
+        <h3>Send an enquiry</h3>
+        <div class="field"><label>Full name</label><input type="text" placeholder="Your full name"></div>
+        <div class="field"><label>Organisation</label><input type="text" placeholder="Company name"></div>
+        <div class="field"><label>Email address</label><input type="email" placeholder="you@company.com"></div>
+        <div class="field"><label>Area of interest</label>
+          <select>
+            <option value="">Select a service area&hellip;</option>
+            <option>Technology &amp; business consultancy</option>
+            <option>Securing platforms &amp; endpoints</option>
+            <option>Post-quantum cryptography (PQC)</option>
+            <option>Security, risk &amp; compliance (CIS / NCSC)</option>
+            <option>Corporate Dynamism&reg; &mdash; business services</option>
+            <option>Enterprise B2B corporate gifting</option>
+            <option>Brand design &amp; identity</option>
+            <option>Workforce training &mdash; We Job Box</option>
+            <option>Decarbonisation &amp; green energy</option>
+            <option>WEF Davos 27 trade partnership</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="field"><label>Message</label><textarea placeholder="Tell us what you&rsquo;re working on or looking to achieve&hellip;"></textarea></div>
+        <button class="submit-btn">Send enquiry</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div><div class="footer-brand-name">eTech Fusion Group</div><p class="footer-brand-desc">Securing enterprises. Building brands. Training the next generation. Investing in a greener future. Two decades of experience across Corporate, Legal, Banking, Government &amp; Defence.</p></div>
+      <div class="footer-col"><h4>Services</h4><ul><li>Technology Consultancy</li><li>Endpoint Security</li><li>PQC Readiness</li><li>CIS / NCSC Compliance</li><li>Corporate Dynamism&reg;</li><li>Enterprise Gifting</li><li>Brand Design</li></ul></div>
+      <div class="footer-col"><h4>Training &amp; Sustainability</h4><ul><li>IT &amp; Digital Skills</li><li>Soft Skills</li><li>Presentation Skills</li><li>Profile Building</li><li>Oxygenate &mdash; Bamboo</li><li><a href="https://www.enerlink.ai" target="_blank">Enerlink.ai</a></li></ul></div>
+      <div class="footer-col"><h4>Connect</h4><ul><li><a href="https://www.linkedin.com/in/bobbi-trehan-young" target="_blank">LinkedIn</a></li><li><a href="https://www.bobbildn.com" target="_blank">Bobbi | London&trade;</a></li><li>We Job Box</li><li><button onclick="showPage('wef')" style="background:none;border:none;color:rgba(255,255,255,0.35);font-size:12.5px;cursor:pointer;font-family:inherit;padding:0">WEF27 Programme</button></li><li><button onclick="showPage('about')" style="background:none;border:none;color:rgba(255,255,255,0.35);font-size:12.5px;cursor:pointer;font-family:inherit;padding:0">About Bobbi</button></li></ul></div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copy">&copy; 2026 eTech Fusion Group&reg; &nbsp;&middot;&nbsp; Corporate Dynamism&reg; &nbsp;&middot;&nbsp; Bobbi | London&trade; &nbsp;&middot;&nbsp; All rights reserved.</span>
+      <span style="font-size:11px;color:rgba(255,255,255,0.25)">Net zero committed &nbsp;&middot;&nbsp; WEF Davos 27</span>
+    </div>
+  </div>
+</footer>
+</div><!-- /page-main -->
+
+
+<!-- ═══════════════════ WEF27 PAGE ═══════════════════ -->
+<div id="page-wef" class="page">
+
+  <div class="w-back-bar">
+    <button class="w-back-btn" onclick="showPage('main')">&#8592; eTech Fusion Group</button>
+    <span class="w-back-sep">/</span>
+    <span class="w-back-title">WEF27 Trade Envoy Programme</span>
+  </div>
+
+  <div class="w-hero">
+    <div class="w-hero-bg"></div>
+    <div class="w-hero-lines"></div>
+    <div class="w-hero-content">
+      <p class="w-hero-eyebrow">World Economic Forum Annual Meeting 2027</p>
+      <h1 class="w-hero-title">Trade<br><em>Envoy</em><br>Programme</h1>
+      <p class="w-hero-sub">An exclusive access programme placing senior business leaders at the heart of Davos &mdash; inside the security perimeter.</p>
+      <div class="w-hero-meta">
+        <div class="w-meta-item"><span class="w-meta-label">Location</span><span class="w-meta-value">Davos, Switzerland</span></div>
+        <div class="w-meta-item"><span class="w-meta-label">Format</span><span class="w-meta-value">Curated Dinner &middot; Security Zone Access</span></div>
+        <div class="w-meta-item"><span class="w-meta-label">Places</span><span class="w-meta-value">Strictly Limited</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- OVERVIEW -->
+  <div class="w-section" id="w-overview">
+    <div class="w-section-header">
+      <span class="w-section-num">01</span>
+      <div>
+        <p class="w-section-tag">Overview</p>
+        <h2 class="w-section-title">A seat at the table<br>where decisions are <em>made</em></h2>
+      </div>
+    </div>
+    <div class="w-intro-body">
+      <p class="w-intro-lead">The WEF Trade Envoy Programme grants you access to the same corridor where heads of state, central bank governors, and global CEOs convene &mdash; not as an observer, but as a participant.</p>
+      <div class="w-intro-copy">
+        <p>We host a private dinner within the Davos security zone during the World Economic Forum&rsquo;s Annual Meeting 2027. Attendance at the dinner serves as your access credential, and security badges are arranged through our allocation &mdash; removing one of the most significant barriers to meaningful Davos participation.</p>
+        <p>This is not a fringe event or a side gathering. This is access inside the perimeter, at the table where global trade, policy, and investment conversations happen. The distinction matters enormously to those who understand the difference.</p>
+        <p>Crucially, we match your sector focus to the right people in the room. Whether your area is finance, energy, technology, healthcare, or geopolitics, your placement and conversations are directed towards the most relevant decision-makers present.</p>
+      </div>
+      <div class="w-pull-quote">
+        <p>&ldquo;Your sector focus determines who you sit with. We ensure your pitch reaches the right ears &mdash; so every conversation is a strategic one.&rdquo;</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- INCLUSIONS -->
+  <div class="w-section" id="w-inclusions">
+    <div class="w-section-header">
+      <span class="w-section-num">02</span>
+      <div>
+        <p class="w-section-tag">What&rsquo;s Included</p>
+        <h2 class="w-section-title">Everything arranged,<br>so you can <em>focus</em></h2>
+      </div>
+    </div>
+    <div class="w-inc-grid">
+      <div class="w-inc-card">
+        <div class="w-inc-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+        <p class="w-inc-title">WEF Security Badge</p>
+        <p class="w-inc-desc">Full security zone access badge, arranged on your behalf through our allocation. The dinner invitation forms the basis for badge issuance.</p>
+      </div>
+      <div class="w-inc-card">
+        <div class="w-inc-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><path d="M8 12h8M12 8v8"/></svg></div>
+        <p class="w-inc-title">Formal Dinner Invitation</p>
+        <p class="w-inc-desc">Private curated dinner hosted inside the Davos security perimeter. Attendance constitutes your official forum invitation and access event.</p>
+      </div>
+      <div class="w-inc-card">
+        <div class="w-inc-icon"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+        <p class="w-inc-title">Accommodation</p>
+        <p class="w-inc-desc">Curated accommodation arrangements in or close to Davos for the duration of the forum, coordinated to your schedule.</p>
+      </div>
+      <div class="w-inc-card">
+        <div class="w-inc-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+        <p class="w-inc-title">Airport&ndash;Davos Transfer</p>
+        <p class="w-inc-desc">Arranged transfer from your arrival airport to Davos for badge collection, coordinated with your travel itinerary.</p>
+      </div>
+      <div class="w-inc-card">
+        <div class="w-inc-icon"><svg viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13" rx="1"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div>
+        <p class="w-inc-title">Accommodation&ndash;Davos Transport</p>
+        <p class="w-inc-desc">Daily transport coordinated between your accommodation and the forum zone, ensuring seamless movement throughout your stay.</p>
+      </div>
+      <div class="w-inc-card excluded">
+        <span class="w-exc-badge">Not included</span>
+        <div class="w-inc-icon"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013 7.18c-.3-2.29.79-3.72 2.07-4.07h3C9.16 3 10.33 4 10.67 5.33c.33 1.33.67 2.33 1 3-.33.67-.67 1.33-.33 2.33L12 12.5c.67 2.67 3.67 4.33 5.67 4.42z"/></svg></div>
+        <p class="w-inc-title">International Flights</p>
+        <p class="w-inc-desc">International flights to Switzerland are the responsibility of each participant and are not covered by the programme fee.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- TIERS -->
+  <div class="w-section" id="w-tiers">
+    <div class="w-section-header">
+      <span class="w-section-num">03</span>
+      <div>
+        <p class="w-section-tag">Participation Tiers</p>
+        <h2 class="w-section-title">Choose your level<br>of <em>engagement</em></h2>
+      </div>
+    </div>
+    <div class="w-tiers-grid">
+      <div class="w-tier">
+        <p class="w-tier-name">Envoy</p>
+        <p class="w-tier-price">Pricing to be confirmed</p>
+        <p class="w-tier-desc">Core programme access &mdash; everything you need to be present inside Davos, with your pitch directed to the right sector contacts.</p>
+        <ul class="w-tier-features"><li>WEF security badge</li><li>Formal dinner invitation</li><li>Airport&ndash;Davos transfer</li><li>Accommodation arrangement</li><li>Daily forum transport</li><li>Sector-matched dinner placement</li></ul>
+        <a href="mailto:?subject=WEF27%20Trade%20Envoy%20-%20Envoy%20Tier%20Interest" class="w-tier-btn">Express Interest</a>
+      </div>
+      <div class="w-tier featured">
+        <span class="w-featured-badge">Recommended</span>
+        <p class="w-tier-name">Senior Envoy</p>
+        <p class="w-tier-price">Pricing to be confirmed</p>
+        <p class="w-tier-desc">Enhanced access with priority placement and targeted facilitation &mdash; designed for leaders who want to maximise strategic impact at the forum.</p>
+        <ul class="w-tier-features"><li>Everything in Envoy</li><li>Priority seating at dinner</li><li>Targeted pitch facilitation</li><li>Curated introductions</li><li>Dedicated logistics coordinator</li><li>Pre-forum briefing session</li></ul>
+        <a href="mailto:?subject=WEF27%20Trade%20Envoy%20-%20Senior%20Envoy%20Interest" class="w-tier-btn">Express Interest</a>
+      </div>
+      <div class="w-tier">
+        <p class="w-tier-name">Principal</p>
+        <p class="w-tier-price">Pricing to be confirmed</p>
+        <p class="w-tier-desc">Full white-glove experience &mdash; premium accommodation, concierge support, and curated bilateral meeting facilitation throughout the forum.</p>
+        <ul class="w-tier-features"><li>Everything in Senior Envoy</li><li>Premium accommodation</li><li>Full concierge service</li><li>Bilateral meeting facilitation</li><li>Forum-wide logistics management</li><li>Post-forum connection follow-up</li></ul>
+        <a href="mailto:?subject=WEF27%20Trade%20Envoy%20-%20Principal%20Tier%20Interest" class="w-tier-btn">Express Interest</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROCESS -->
+  <div class="w-section" id="w-process">
+    <div class="w-section-header">
+      <span class="w-section-num">04</span>
+      <div>
+        <p class="w-section-tag">How It Works</p>
+        <h2 class="w-section-title">From expression<br>of interest to <em>Davos</em></h2>
+      </div>
+    </div>
+    <div class="w-steps">
+      <div class="w-step"><span class="w-step-num">01</span><div><p class="w-step-title">Express Your Interest &amp; Define Your Focus</p><p class="w-step-desc">Tell us your sector, strategic objectives, and the type of decision-makers you want to reach. This shapes your entire experience from dinner placement to introductions.</p></div></div>
+      <div class="w-step"><span class="w-step-num">02</span><div><p class="w-step-title">Select Your Participation Tier</p><p class="w-step-desc">Once pricing is confirmed, select the tier that fits your objectives. Places are strictly limited by our badge allocation &mdash; early expressions of interest are strongly encouraged.</p></div></div>
+      <div class="w-step"><span class="w-step-num">03</span><div><p class="w-step-title">Receive Your Formal Invitation &amp; Badge</p><p class="w-step-desc">We issue your formal dinner invitation and commence badge accreditation through our WEF allocation &mdash; granting you access to the security zone.</p></div></div>
+      <div class="w-step"><span class="w-step-num">04</span><div><p class="w-step-title">Logistics Are Coordinated Around You</p><p class="w-step-desc">Your airport transfer, accommodation, and daily forum transport are all arranged and coordinated to your travel itinerary. Arrive ready to engage.</p></div></div>
+      <div class="w-step"><span class="w-step-num">05</span><div><p class="w-step-title">Attend &amp; Make Your Pitch Count</p><p class="w-step-desc">Join the dinner inside the Davos security zone. The right people are in the room for your agenda. Your introduction is the one that matters.</p></div></div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="w-cta-section" id="w-contact">
+    <div class="w-cta-inner">
+      <h2 class="w-cta-title">Reserve your<br>place at the <em>table</em></h2>
+      <p class="w-cta-body">Capacity is determined by our badge allocation. Once places are filled, the programme is closed. Early expressions of interest are strongly encouraged &mdash; pricing confirmation will follow shortly.</p>
+      <div class="w-cta-btns">
+        <a href="mailto:?subject=WEF27%20Trade%20Envoy%20Programme%20-%20Expression%20of%20Interest" class="w-btn-p">Express Interest</a>
+        <a href="mailto:?subject=WEF27%20Trade%20Envoy%20-%20Enquiry" class="w-btn-s">Send an Enquiry</a>
+      </div>
+      <p class="w-cta-note">Confidential enquiries welcome &nbsp;&middot;&nbsp; Pricing to be confirmed &nbsp;&middot;&nbsp; International flights not included</p>
+    </div>
+  </div>
+
+  <div class="w-footer">
+    <span class="w-footer-logo">Trade Envoy Programme &nbsp;&middot;&nbsp; eTech Fusion Group</span>
+    <p>WEF Annual Meeting 2027 &nbsp;&middot;&nbsp; Davos, Switzerland</p>
+    <button onclick="showPage('main')" style="background:none;border:none;color:rgba(245,240,232,0.3);font-size:11.5px;cursor:pointer;font-family:inherit;">&#8592; Back to eTech Fusion Group</button>
+  </div>
+
+  <script>
+    const wsteps = document.querySelectorAll('.w-step');
+    const wobs = new IntersectionObserver(function(entries){
+      entries.forEach(function(e,i){
+        if(e.isIntersecting) setTimeout(function(){ e.target.classList.add('visible'); }, i*120);
+      });
+    },{ threshold: 0.15 });
+    wsteps.forEach(function(s){ wobs.observe(s); });
+  </script>
+
+</div><!-- /page-wef -->
+
+
+<!-- ═══════════════════ ABOUT PAGE ═══════════════════ -->
+<div id="page-about" class="page">
+<nav>
+  <div class="nav-inner">
+    <div class="logo" onclick="showPage('main')"><div class="logo-mark">eTF</div><div><div class="logo-text">eTech Fusion Group</div><div class="logo-sub">Technology &middot; Security &middot; Sustainability &middot; Design</div></div></div>
+    <ul class="nav-links"><li><button onclick="showPage('main')">&#8592; Back to site</button></li><li><a href="https://www.linkedin.com/in/bobbi-trehan-young" target="_blank" class="nav-cta">LinkedIn &nearr;</a></li></ul>
+  </div>
+</nav>
+<div class="about-hero">
+  <div class="site">
+    <button class="about-back" onclick="showPage('main')">&#8592; eTech Fusion Group</button>
+    <h1>Bobbi Trehan-Young</h1>
+    <p>Founder &amp; CEO, eTech Fusion Group &nbsp;&middot;&nbsp; WEF Davos 27 Trade Envoy &nbsp;&middot;&nbsp; Green Energy Investor &nbsp;&middot;&nbsp; Workforce Champion</p>
+  </div>
+</div>
+<div class="about-body">
+  <div class="site">
+    <div class="about-layout">
+      <div class="profile-card">
+        <div class="profile-avatar">BT</div>
+        <div class="profile-name">Bobbi Trehan-Young</div>
+        <div class="profile-title">Founder &amp; CEO, eTech Fusion Group<br>WEF Davos 27 Trade Envoy</div>
+        <div class="profile-tags"><span class="ptag">WEF Davos 27</span><span class="ptag ptag-green">Green Investor</span><span class="ptag">Women in Tech</span><span class="ptag">#SmallBiz100</span><span class="ptag">PQC Advocate</span></div>
+        <div class="social-links">
+          <a class="social-link" href="https://www.linkedin.com/in/bobbi-trehan-young" target="_blank"><span class="social-dot"></span>Bobbi Trehan-Young | LinkedIn</a>
+          <a class="social-link" href="https://www.etechfusiongroup.com" target="_blank"><span class="social-dot"></span>etechfusiongroup.com</a>
+          <a class="social-link" href="https://www.bobbildn.com" target="_blank"><span class="social-dot"></span>bobbildn.com &mdash; Bobbi | London&trade;</a>
+          <a class="social-link" href="https://www.enerlink.ai" target="_blank"><span class="social-dot"></span>enerlink.ai &mdash; portfolio investment</a>
+        </div>
+      </div>
+      <div class="about-content">
+        <h2>Technology leader, global trade advocate &amp; green energy investor</h2>
+        <p>Bobbi Trehan-Young is the founder of eTech Fusion Group &mdash; a group of companies built on over two decades of expertise spanning enterprise endpoint security, technology consultancy, brand design, and business services. Based in the UK, she has worked at the highest levels across Corporate, Legal, Banking, Government and Defence environments.</p>
+        <p>As a WEF Davos 27 Trade Envoy, Bobbi represents SMEs and technology-led businesses in global trade and policy dialogue. As an investor in Enerlink.ai and champion of the oxygenating bamboo initiative through Oxygenate Environmental Consultants, she is equally committed to climate action and the green economy. Through her partnership with We Job Box, she actively invests in people &mdash; ensuring the next generation enters the workforce with the skills, confidence, and profile to thrive.</p>
+        <h3>Areas of expertise</h3>
+        <div class="exp-list">
+          <div class="exp-item"><span class="exp-dot"></span>Enterprise technology consultancy across Corporate, Legal, Banking, Government &amp; Defence</div>
+          <div class="exp-item"><span class="exp-dot"></span>Quantum-resilient endpoint security &mdash; Microsoft Intune, Autopilot, Endpoint Manager, PQC readiness</div>
+          <div class="exp-item"><span class="exp-dot"></span>CIS Controls v8 &amp; NCSC Cyber Essentials Plus compliance programmes</div>
+          <div class="exp-item"><span class="exp-dot"></span>Corporate Dynamism&reg; &mdash; SME growth strategy, market entry &amp; investor readiness</div>
+          <div class="exp-item"><span class="exp-dot"></span>Bobbi | London&trade; &mdash; enterprise B2B corporate gifting at scale</div>
+          <div class="exp-item"><span class="exp-dot"></span>Workforce training &mdash; IT, soft skills, presentation &amp; profile building via We Job Box</div>
+          <div class="exp-item"><span class="exp-dot"></span>Enerlink.ai investor &mdash; AI-powered clean energy verification &amp; carbon credits</div>
+          <div class="exp-item"><span class="exp-dot"></span>Oxygenating bamboo initiative &mdash; nature-based sequestration via Oxygenate Environmental Consultants</div>
+          <div class="exp-item"><span class="exp-dot"></span>WEF Davos 27 Trade Envoy &mdash; global trade, technology &amp; climate policy</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<footer><div class="footer-inner"><div class="footer-bottom" style="border-top:none;padding-top:0"><span class="footer-copy">&copy; 2026 eTech Fusion Group&reg; &nbsp;&middot;&nbsp; Corporate Dynamism&reg; &nbsp;&middot;&nbsp; Bobbi | London&trade;</span><button onclick="showPage('main')" style="background:none;border:none;color:rgba(255,255,255,0.32);font-size:11.5px;cursor:pointer;font-family:inherit;">&#8592; Back to site</button></div></div></footer>
+</div><!-- /page-about -->
+
+<script>
+function showPage(id) {
+  document.querySelectorAll('.page').forEach(function(p){ p.classList.remove('active'); });
+  document.getElementById('page-' + id).classList.add('active');
+  window.scrollTo(0, 0);
+}
+</script>
+</body>
+</html>
