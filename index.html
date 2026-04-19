@@ -3,6 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Favicon -->
+<link rel="icon" href="favicon-large.png" type="image/png">
+<link rel="shortcut icon" href="favicon-large.png">
+<meta name="theme-color" content="#1A2E45">
 <title>eTech Fusion Group — Technology · Security · Design · Sustainability</title>
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -41,7 +45,7 @@ a { color: inherit; text-decoration: none; }
 nav { background: var(--navy); padding: 0.85rem 0; position: sticky; top: 0; z-index: 100; }
 .nav-inner { display: flex; align-items: center; justify-content: space-between; max-width: 1080px; margin: 0 auto; padding: 0 1.5rem; gap: 1rem; }
 .logo { display: flex; align-items: center; gap: 10px; cursor: pointer; }
-.logo-mark { width: 34px; height: 34px; border-radius: 7px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.16); display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 600; color: #fff; flex-shrink: 0; }
+.logo-image { width: 96px; height: 96px; flex-shrink: 0; object-fit: contain; display: block; }
 .logo-text { font-size: 14px; font-weight: 600; color: #fff; }
 .logo-sub { font-size: 10px; color: rgba(255,255,255,0.45); margin-top: 1px; }
 .nav-links { display: flex; gap: 1.5rem; list-style: none; align-items: center; }
@@ -457,7 +461,7 @@ footer { background: var(--navy); padding: 3rem 0 1.75rem; }
 <nav>
   <div class="nav-inner">
     <div class="logo" onclick="showPage('main')">
-      <div class="logo-mark">eTFL</div>
+      <img src="eTech_Fusion-vector.png" alt="eTech Fusion Group logo" class="logo-image">
       <div>
         <div class="logo-text">eTech Fusion Group</div>
         <div class="logo-sub">Technology &middot; Security &middot; Sustainability &middot; Design</div>
@@ -872,7 +876,7 @@ footer { background: var(--navy); padding: 3rem 0 1.75rem; }
 <div id="page-about" class="page">
 <nav>
   <div class="nav-inner">
-    <div class="logo" onclick="showPage('main')"><div class="logo-mark">eTF</div><div><div class="logo-text">eTech Fusion Group</div><div class="logo-sub">Technology &middot; Security &middot; Sustainability &middot; Design</div></div></div>
+    <div class="logo" onclick="showPage('main')"><img src="eTech_Fusion-vector.png" alt="eTech Fusion Group logo" class="logo-image"><div><div class="logo-text">eTech Fusion Group</div><div class="logo-sub">Technology &middot; Security &middot; Sustainability &middot; Design</div></div></div>
     <ul class="nav-links"><li><button onclick="showPage('main')">&#8592; Back to site</button></li><li><a href="https://www.linkedin.com/company/etechfusiongroup" target="_blank" class="nav-cta">LinkedIn &nearr;</a></li></ul>
   </div>
 </nav>
